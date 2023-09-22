@@ -15,7 +15,7 @@ class Categories(Enum):
     TRASH = 5 
     OTHER = -1 
 IMAGE_SIZE = 256 
-RESCALING = False 
+RESCALING = True
 COLOR_MODE = "rgb"
 # COLOR_MODE = "grayscale"
 if COLOR_MODE == "rgb":
@@ -23,7 +23,7 @@ if COLOR_MODE == "rgb":
 else: 
     CHANNELS = 1 
 def classifyObject(img):
-    model_load = tf.keras.models.load_model(filepath = r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\ai_models\model_trashclassification.h5",
+    model_load = tf.keras.models.load_model(filepath = r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\ai_models\model_trashclassification2.h5",
                                             custom_objects = None, compile = True, options = None)
     if COLOR_MODE == "grayscale":
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -40,15 +40,15 @@ def classifyObject(img):
         prediction = -1 
     print(prediction)
     return prediction
-def testIAwithImage():
-    img = cv2.imread(r"D:\rsz_z4712129112219_0b8e85f5bcf66537451835c4dab4a313.jpg")
-    cv2.imshow("TEST_IMAGE", img)
-    prediction = classifyObject(img)
-    print(f"Class with the highest probability: {Categories(prediction)}")
-    print(f"Oject belongs to category number: {prediction}")
-    cv2.imshow("TEST_IMAGE", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-if __name__ == "__main__":
-    testIAwithImage()
+# def testIAwithImage():
+#     img = cv2.imread(r"D:\rsz_z4712129112219_0b8e85f5bcf66537451835c4dab4a313.jpg")
+#     cv2.imshow("TEST_IMAGE", img)
+#     prediction = classifyObject(img)
+#     print(f"Class with the highest probability: {Categories(prediction)}")
+#     print(f"Oject belongs to category number: {prediction}")
+#     cv2.imshow("TEST_IMAGE", img)
+#     cv2.waitKey(0)
+#     cv2.destroyAllWindows()
+# if __name__ == "__main__":
+    # testIAwithImage()
 

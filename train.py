@@ -69,9 +69,9 @@ for folder_name in os.listdir(folder_main):
             shutil.copy(file_path, test_class_dir)
 # ------------------- TIỀN XỬ LÝ ------------------------------- 
 # Số lần lặp tập dữ liệu để huấn luyện 
-NUMBER_OF_PORCH = 15
+NUMBER_OF_PORCH = 30
 # Chuẩn hoá lại ảnh từ 0 đến 1  
-RESCALING = False
+RESCALING = True
 # Size ảnh 
 IMAGE_SIZE = 256
 # Chế độ màu 
@@ -122,21 +122,21 @@ print(class_names)
 
 model = tf.keras.models.Sequential([
 #Thêm convolution và maxpooling 
-    # tf.keras.layers.Conv2D(64 ,(3,3), activation = "relu", input_shape=(IMAGE_SIZE, IMAGE_SIZE, CHANNELS)),
-    # tf.keras.layers.MaxPooling2D(2,2),
-    # tf.keras.layers.Conv2D(128 ,(3,3), activation = "relu"),
-    # tf.keras.layers.MaxPooling2D(2,2),
-    # tf.keras.layers.Conv2D(64 ,(3,3), activation = "relu"),
-    # tf.keras.layers.MaxPooling2D(2,2),
     tf.keras.layers.Conv2D(64 ,(3,3), activation = "relu", input_shape=(IMAGE_SIZE, IMAGE_SIZE, CHANNELS)),
     tf.keras.layers.MaxPooling2D(2,2),
-    tf.keras.layers.Conv2D(32 ,(3,3), activation = "relu"),
+    tf.keras.layers.Conv2D(128 ,(3,3), activation = "relu"),
     tf.keras.layers.MaxPooling2D(2,2),
+    tf.keras.layers.Conv2D(64 ,(3,3), activation = "relu"),
+    tf.keras.layers.MaxPooling2D(2,2),
+    # tf.keras.layers.Conv2D(64 ,(3,3), activation = "relu", input_shape=(IMAGE_SIZE, IMAGE_SIZE, CHANNELS)),
+    # tf.keras.layers.MaxPooling2D(2,2),
+    # tf.keras.layers.Conv2D(32 ,(3,3), activation = "relu"),
+    # tf.keras.layers.MaxPooling2D(2,2),
 
 #Biến đổi thành vector một chiều 
     tf.keras.layers.Flatten(),
 #Lớp Fully Connected
-    tf.keras.layers.Dense(64, activation= "relu"),
+    tf.keras.layers.Dense(128, activation= "relu"),
     tf.keras.layers.Dense(64, activation= "relu"),
     tf.keras.layers.Dense(6, activation= "softmax"),
 ])
@@ -159,7 +159,7 @@ else:
 #Lưu models 
 tf.keras.models.save_model(
     model, 
-    filepath = "./ai_models/model_trashclassification.h5",
+    filepath = "./ai_models/model_trashclassification2.h5",
     overwrite = True,
     include_optimizer = False,
     save_format = None, # Đuôi h5

@@ -1,6 +1,6 @@
 import cv2
 import numpy as np 
-import ai as ai_module
+import ai 
 
 # Open device at the ID 1 (ID1: Camera computer)
 cap = cv2.VideoCapture(0)
@@ -19,8 +19,8 @@ while True:
     resize_frame = cv2.resize(frame, (1000,700))
     #Display with dimensions resized with title "Display Trash_Classification" 
     cv2.imshow("Display Trash_Classification", resize_frame)
-    category = ai_module.classifyObject(frame)
-    print(f'Class with the highest probability: {ai_module.Categories(category)}')
+    category = ai.classifyObject(frame)
+    print(f'Class with the highest probability: {ai.Categories(category)}')
     print(f'Object belongs to category number : {category}')
 
     ## Waits for a user input to quit the application
