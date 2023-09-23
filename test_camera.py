@@ -3,7 +3,7 @@ import numpy as np
 import ai 
 
 # Open device at the ID 1 (ID1: Camera computer)
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 # Check whether user-selected camera is opened successfully
 if not cap.isOpened():

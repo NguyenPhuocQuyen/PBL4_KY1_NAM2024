@@ -40,15 +40,15 @@ def classifyObject(img):
         prediction = -1 
     print(prediction)
     return prediction
-# def testIAwithImage():
-#     img = cv2.imread(r"D:\rsz_z4712129112219_0b8e85f5bcf66537451835c4dab4a313.jpg")
-#     cv2.imshow("TEST_IMAGE", img)
-#     prediction = classifyObject(img)
-#     print(f"Class with the highest probability: {Categories(prediction)}")
-#     print(f"Oject belongs to category number: {prediction}")
-#     cv2.imshow("TEST_IMAGE", img)
-#     cv2.waitKey(0)
-#     cv2.destroyAllWindows()
-# if __name__ == "__main__":
-    # testIAwithImage()
+def testIAwithImage():
+    img = cv2.imread(r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\archive\Garbage_classification\Garbage_classification\paper\paper73.jpg")
+    cv2.imshow("TEST_IMAGE", img)
+    prediction = classifyObject(img)
+    print(f"Class with the highest probability: {Categories(prediction)}")
+    print(f"Oject belongs to category number: {prediction}")
+    cv2.imshow("TEST_IMAGE", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+if __name__ == "__main__":
+    testIAwithImage()
 
