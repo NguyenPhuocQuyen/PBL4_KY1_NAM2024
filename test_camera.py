@@ -3,7 +3,7 @@ import numpy as np
 import ai 
 
 # Open device at the ID 1 (ID1: Camera computer)
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # Check whether user-selected camera is opened successfully
 if not cap.isOpened():
@@ -16,7 +16,7 @@ while True:
         print("Could not read frame")
         break 
     #resize_frame with dimensions 
-    resize_frame = cv2.resize(frame, (1000,700))
+    resize_frame = cv2.resize(frame, (800,700))
     #Display with dimensions resized with title "Display Trash_Classification" 
     cv2.imshow("Display Trash_Classification", resize_frame)
     category = ai.classifyObject(frame)

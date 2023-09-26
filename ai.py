@@ -15,7 +15,7 @@ class Categories(Enum):
     TRASH = 5 
     OTHER = -1 
 IMAGE_SIZE = 256 
-RESCALING = True
+RESCALING = False
 COLOR_MODE = "rgb"
 # COLOR_MODE = "grayscale"
 if COLOR_MODE == "rgb":

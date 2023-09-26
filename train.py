@@ -53,9 +53,11 @@ for folder_name in os.listdir(folder_main):
         # print(split_index)
         #Chia các tệp tin thành tập train và test 
         train_files = files[:split_index]
-        # print(len(  train_files))
+        # print("Số file tập train")
+        # print(len(train_files))
         test_files = files[split_index:]
         # print(len(train_files))
+        # print("Số file tập test")
         # print(len(test_files))
         #Di chuyển các tệp train vào thư mục train 
         for file in train_files:
@@ -71,7 +73,7 @@ for folder_name in os.listdir(folder_main):
 # Số lần lặp tập dữ liệu để huấn luyện 
 NUMBER_OF_PORCH = 30
 # Chuẩn hoá lại ảnh từ 0 đến 1  
-RESCALING = True
+RESCALING = False
 # Size ảnh 
 IMAGE_SIZE = 256
 # Chế độ màu 
@@ -93,7 +95,8 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
 #Tên của các lớp (các thư mục cardboard, glass .... ), None vì lấy từ thư mục con 
     class_names = None,
 # Số ảnh được đưa vào huấn luyện mỗii lần là 32 ảnh 
-    batch_size=32,
+    # batch_size=32,
+    batch_size=16,
 #Tham số hình ảnh đầu vào
     image_size = (IMAGE_SIZE, IMAGE_SIZE),
 #Xáo trộn dữ liệu trước khi lấy 32 ảnh 
@@ -159,7 +162,7 @@ else:
 #Lưu models 
 tf.keras.models.save_model(
     model, 
-    filepath = "./ai_models/model_trashclassification2.h5",
+    filepath = "./ai_models/model_trashclassification3_bs_16.h5",
     overwrite = True,
     include_optimizer = False,
     save_format = None, # Đuôi h5
