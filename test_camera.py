@@ -16,7 +16,7 @@ while True:
         print("Could not read frame")
         break 
     #resize_frame with dimensions 
-    resize_frame = cv2.resize(frame, (800,700))
+    resize_frame = cv2.resize(frame, (700,400))
     #Display with dimensions resized with title "Display Trash_Classification" 
     cv2.imshow("Display Trash_Classification", resize_frame)
     category = ai.classifyObject(frame)

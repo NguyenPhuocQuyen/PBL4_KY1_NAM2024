@@ -13,62 +13,62 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
 
-# ----------- Chia tập dữ liệu thành tập train và tập test ---------------- 
-# Đường dẫn đến thư mục chứa gốc dữ liệu hình ảnh
-folder_main = r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\archive\Garbage_classification\Garbage_classification"
-# Đường dẫn đến thư mục chứa tập train và tập test 
-train_test = r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\archive_split"
-# Chọn tỉ lệ phần trăm cho tập train 
-train_percentage = 90
+# # ----------- Chia tập dữ liệu thành tập train và tập test ---------------- 
+# # Đường dẫn đến thư mục chứa gốc dữ liệu hình ảnh
+# folder_main = r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\archive_Kaggle\Garbage classification\Garbage classification"
+# # Đường dẫn đến thư mục chứa tập train và tập test 
+# train_test = r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\archive_Kaggle_2000"
+# # Chọn tỉ lệ phần trăm cho tập train 
+# train_percentage = 90
 
-#Tạo thư mục train và thư mục test 
-train_folder = os.path.join(train_test, "train")
-test_folder  = os.path.join(train_test, "test")
-os.makedirs(train_folder, exist_ok=True)
-os.makedirs(test_folder, exist_ok=True)
-# print(train_folder)
-# print(test_folder)
+# #Tạo thư mục train và thư mục test 
+# train_folder = os.path.join(train_test, "train")
+# test_folder  = os.path.join(train_test, "test")
+# os.makedirs(train_folder, exist_ok=True)
+# os.makedirs(test_folder, exist_ok=True)
+# # print(train_folder)
+# # print(test_folder)
 
-#Lặp qua các thư mục con trong thư mục gốc 
-for folder_name in os.listdir(folder_main):
-    # print(folder_name) # In ra các thư mục con 
-    folder_dir = os.path.join(folder_main, folder_name)
-    # print(folder_dir) # In ra link của thư mục main + folder_name
-    # Kiểm tra đường dẫn có phải thư mục hay không 
-    if os.path.isdir(folder_dir):
-        # Tạo thư mục con trong thư mục train và test 
-        train_class_dir = os.path.join(train_folder, folder_name)
-        test_class_dir = os.path.join(test_folder, folder_name)
-        os.makedirs(train_class_dir, exist_ok=True)
-        os.makedirs(test_class_dir, exist_ok=True)
+# #Lặp qua các thư mục con trong thư mục gốc 
+# for folder_name in os.listdir(folder_main):
+#     # print(folder_name) # In ra các thư mục con 
+#     folder_dir = os.path.join(folder_main, folder_name)
+#     # print(folder_dir) # In ra link của thư mục main + folder_name
+#     # Kiểm tra đường dẫn có phải thư mục hay không 
+#     if os.path.isdir(folder_dir):
+#         # Tạo thư mục con trong thư mục train và test 
+#         train_class_dir = os.path.join(train_folder, folder_name)
+#         test_class_dir = os.path.join(test_folder, folder_name)
+#         os.makedirs(train_class_dir, exist_ok=True)
+#         os.makedirs(test_class_dir, exist_ok=True)
         
-        #Lấy danh sách các tệp tin có trong thư mục của lỗi lớp 
-        files = os.listdir(folder_dir)
-        # print(files) # Xuất từng ảnh 
-        # Xáo trộn danh sách các tệp tin 
-        random.shuffle(files)
-        # print(len(files))
-        # Tính chỉ số cắt để chia thành tập train và tập test 
-        split_index = int(len(files)*train_percentage/100)
-        # print(split_index)
-        #Chia các tệp tin thành tập train và test 
-        train_files = files[:split_index]
-        # print("Số file tập train")
-        # print(len(train_files))
-        test_files = files[split_index:]
-        # print(len(train_files))
-        # print("Số file tập test")
-        # print(len(test_files))
-        #Di chuyển các tệp train vào thư mục train 
-        for file in train_files:
-            file_path = os.path.join(folder_dir, file)
-        # print(len(file_path))
-            shutil.copy(file_path, train_class_dir)
-        #Di chuyển các tệp train vào thư mục test
-        for file in test_files:
-            file_path = os.path.join(folder_dir, file)
-        # print(len(file_path))
-            shutil.copy(file_path, test_class_dir)
+#         #Lấy danh sách các tệp tin có trong thư mục của mỗi lớp 
+#         files = os.listdir(folder_dir)
+#         # print(files) # Xuất từng ảnh 
+#         # Xáo trộn danh sách các tệp tin 
+#         random.shuffle(files)
+#         # print(len(files))
+#         # Tính chỉ số cắt để chia thành tập train và tập test 
+#         split_index = int(len(files)*train_percentage/100)
+#         # print(split_index)
+#         #Chia các tệp tin thành tập train và test 
+#         train_files = files[:split_index]
+#         # print("Số file tập train")
+#         # print(len(train_files))
+#         test_files = files[split_index:]
+#         # print(len(train_files))
+#         # print("Số file tập test")
+#         # print(len(test_files))
+#         #Di chuyển các tệp train vào thư mục train 
+#         for file in train_files:
+#             file_path = os.path.join(folder_dir, file)
+#         # print(len(file_path))
+#             shutil.copy(file_path, train_class_dir)
+#         #Di chuyển các tệp train vào thư mục test
+#         for file in test_files:
+#             file_path = os.path.join(folder_dir, file)
+#         # print(len(file_path))
+#             shutil.copy(file_path, test_class_dir)
 # ------------------- TIỀN XỬ LÝ ------------------------------- 
 # Số lần lặp tập dữ liệu để huấn luyện 
 NUMBER_OF_PORCH = 30
@@ -88,7 +88,7 @@ else:
 #Thiết lập train 
 train_ds = tf.keras.utils.image_dataset_from_directory(
 # Đưa đường dẫn tập train
-    directory = r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\archive_split\train",
+    directory = r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\archive_split_main\train",
 # Gắn nhãn tương ứng với các thư mục con: cardboard = 0, glass = 1 ..... 
     labels = "inferred",
     label_mode = "int",
@@ -96,22 +96,22 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
     class_names = None,
 # Số ảnh được đưa vào huấn luyện mỗii lần là 32 ảnh 
     # batch_size=32,
-    batch_size=16,
+    batch_size=32,
 #Tham số hình ảnh đầu vào
     image_size = (IMAGE_SIZE, IMAGE_SIZE),
 #Xáo trộn dữ liệu trước khi lấy 32 ảnh 
     shuffle = True, 
     seed = None, 
 #Chia tập dữ liệu val
-    validation_split=None,
+    validation_split=None, #Chia tập validation thì dùng Validation_split = True thì mặc định 0.2 
     subset = None,
 #Phương pháp nội suy sử dụng khi thay đổi kích thước ảnh
     interpolation= "bilinear",
     follow_links= False, 
-    crop_to_aspect_ratio= False, 
+    crop_to_aspect_ratio= True, 
 )
-# print(train_ds)
-# print(type(train_ds))
+print(train_ds)
+print(type(train_ds))
 
 #---------CHUẨN HOÁ  ----------- 
 rescaling_layer = layers.Rescaling(1./255)
@@ -162,7 +162,7 @@ else:
 #Lưu models 
 tf.keras.models.save_model(
     model, 
-    filepath = "./ai_models/model_trashclassification3_bs_16.h5",
+    filepath = "./ai_models/model_trashclassification3_26_10.h5",
     overwrite = True,
     include_optimizer = False,
     save_format = None, # Đuôi h5

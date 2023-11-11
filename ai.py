@@ -15,7 +15,7 @@ class Categories(Enum):
     TRASH = 5 
     OTHER = -1 
 IMAGE_SIZE = 256 
-RESCALING = False
+RESCALING = True
 COLOR_MODE = "rgb"
 # COLOR_MODE = "grayscale"
 if COLOR_MODE == "rgb":
@@ -23,7 +23,7 @@ if COLOR_MODE == "rgb":
 else: 
     CHANNELS = 1 
 def classifyObject(img):
-    model_load = tf.keras.models.load_model(filepath = r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\ai_models\model_trashclassification2.h5",
+    model_load = tf.keras.models.load_model(filepath = r"D:\LEARN\UNIVERSITY\First Semester of Fourth Year\PBL4\Trash_Classification\ai_models\11.h5",
                                             custom_objects = None, compile = True, options = None)
     if COLOR_MODE == "grayscale":
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -41,7 +41,7 @@ def classifyObject(img):
     print(prediction)
     return prediction
 def testIAwithImage():
-    img = cv2.imread(r"D:\Learning\Ky1_Nam4\PBL4\Trash_Classification\archive\Garbage_classification\Garbage_classification\paper\paper73.jpg")
+    img = cv2.imread(r"D:\LEARN\UNIVERSITY\First Semester of Fourth Year\PBL4\Trash_Classification\archive_split_main\train\cardboard\cardboard2.jpg")
     cv2.imshow("TEST_IMAGE", img)
     prediction = classifyObject(img)
     print(f"Class with the highest probability: {Categories(prediction)}")

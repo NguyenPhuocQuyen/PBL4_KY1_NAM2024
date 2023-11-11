@@ -10,7 +10,6 @@
 - Tiền xử lý dữ liệu
 - Xây dựng mô hình phân loại 
 - Triển khai trên cánh tay robot 
-
 #   ------------------------------------- 
 ##1 First step is: the imports
 
@@ -29,3 +28,8 @@
 ##8 eighth step: after doing all above steps, we can start the model training
 
 ##9 the last step is model evaluation
+
+#MODULE 
+ai.py: This is file load model 
+train.py: This is file traing to create model
+test_camera.py: This is file camera to display and known object 
